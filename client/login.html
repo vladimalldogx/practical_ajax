@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+</head>
+<link rel="stylesheet" a href="">
+
+<body>
+	 <!-- <form id="frmlogin">-->
+        Username:<input id="username" type="text"><br>
+        Password:<input id="password" type="password"><br>
+        <button id="btnlogin">Login</button>
+    <!--</form> -->
+<script src="jquery.js"></script>
+<script>
+    $(document).ready(function () {
+        //check if username or password is blank, display error
+        //otherwise, create AJAX request
+        //display "login success" if there is a match with the username and password
+		$("#btnlogin").click(function(){
+
+			var user = $("#username").val();
+			var pass = $("#password").val();
+
+			if(user=="" || pass==""){
+					alert("Username or password is blank!");
+				} else {
+					//issue ajax object
+					//prepare the ff
+					// url, type, data, success, error
+					$.ajax({
+						url:"../Server/login.php",
+						type:"POST",
+						data:{"username":user, "password": pass},
+						success:function(res){
+							alert(res);
+						},
+						error:function(err){   
+							console.log(err);
+						}
+					});
+				}
+			});
+    });
+</script>
+</body>
+</html>

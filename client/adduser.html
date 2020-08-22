@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add User</title>
+</head>
+<body>
+    <!-- <form action="../Server/insert.php" method="POST" id="frminsert"> -->
+        Username:<input id="username" type="text"><br>
+        Password:<input id="password" type="password"><br>
+        Retype Password:<input id="repassword" type="password"><br>
+        <button id="btnlogin">Login</button>
+    <!-- </form> -->
+
+<script src="jquery.js"></script>
+<script>
+    $(document).ready(function () {
+        //check if username or password or retype password is blank, display error
+        //check if password is not equal to retype password field, display error
+        //otherwise, create AJAX request
+        //display "insert success" if the record was successfully inserted
+
+        $("#btnlogin").click(function(){
+            var user = $("#username").val();
+            var pass = $("#password").val();
+            var repass = $("#repassword").val();
+
+            $.ajax({
+                url:"../Server/insert.php",
+                type:"POST",
+                data:{"username":user, "password":pass, "repassword":repass},
+                success:function(e){
+                    alert(e);
+                },
+                error:function(err){
+                    alert("Cannot Connect to the Server!");
+                }
+            });
+        });
+
+    });
+</script>
+</body>
+</html>
